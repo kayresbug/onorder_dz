@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        String str_id = "ddz12";
+                        String str_id = "mwd_";
                         String str_pass = "1234";
                         Retrofit retrofit = new Retrofit.Builder()
                                 .baseUrl("http://15.164.232.164:5000/")

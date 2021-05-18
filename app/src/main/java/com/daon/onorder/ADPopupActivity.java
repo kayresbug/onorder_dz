@@ -55,31 +55,23 @@ public class ADPopupActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
                 if (count == 15){
                     (ADPopupActivity.this).runOnUiThread(new Runnable(){
                         @Override
                         public void run() {
-                            popupImage.setImageResource(R.drawable.dzad2);
+                            popupImage.setImageResource(R.drawable.mwd_ad3);
                         }
                     });
                 }else if (count == 30){
-
-                    (ADPopupActivity.this).runOnUiThread(new Runnable(){
-                        @Override
-                        public void run() {
-                            popupImage.setImageResource(R.drawable.dzad3);
-                        }
-                    });
-                }else if (count == 45){
                     count = 0;
                     (ADPopupActivity.this).runOnUiThread(new Runnable(){
                         @Override
                         public void run() {
-                            popupImage.setImageResource(R.drawable.dzad1);
+                            popupImage.setImageResource(R.drawable.mwd_ad);
                         }
                     });
                 }
-
             }
 
         }

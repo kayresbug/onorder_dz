@@ -44,8 +44,8 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
-                android:visibility="invisible"
-                tools:visibility="invisible">
+                android:visibility="visible"
+                tools:visibility="visible">
 
                 <ImageView
                     android:id="@+id/menu_minus"
@@ -124,8 +124,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:layout_gravity="center"
                 android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
+                <TextView
+                    android:id="@+id/detailfragment_text_infobody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="@color/black"/>
+
+                </LinearLayout>
                 <TextView
                     android:id="@+id/detailfragment_text_info"
                     android:layout_width="wrap_content"
@@ -296,7 +310,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:visibility="visible">
+                    android:visibility="invisible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -367,46 +381,53 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
                         <CheckBox
                             android:id="@+id/check0"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="면 추가(+2,000)"
                             android:textColor="@color/black"></CheckBox>
+
                         <CheckBox
                             android:id="@+id/check1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="소스 따로 주세요"
                             android:textColor="@color/black"></CheckBox>
+
                         <CheckBox
                             android:id="@+id/check2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="돈까스 따로 주세요"
                             android:textColor="@color/black"></CheckBox>
+
                         <CheckBox
                             android:id="@+id/check3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="돈까스 소스 주세요"
                             android:textColor="@color/black"></CheckBox>
+
                         <CheckBox
                             android:id="@+id/check4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="돈까스 따로 주세요"
-                            android:visibility="gone"
-                            android:textColor="@color/black"></CheckBox>
+                            android:textColor="@color/black"
+                            android:visibility="gone"></CheckBox>
+
                         <CheckBox
                             android:id="@+id/check5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="돈까스 소스 주세요"
-                            android:visibility="gone"
-                            android:textColor="@color/black"></CheckBox>
+                            android:textColor="@color/black"
+                            android:visibility="gone"></CheckBox>
+
                         <RadioGroup
                             android:id="@+id/radioGroup2"
                             android:layout_width="match_parent"

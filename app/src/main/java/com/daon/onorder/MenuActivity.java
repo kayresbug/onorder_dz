@@ -108,7 +108,7 @@ public class MenuActivity extends AppCompatActivity{
     FragmentManager fragmentManager;
     SharedPreferences pref;
     TaskTimer taskTimer = new TaskTimer(); // extends AsyncTask
-    int basic = 300;
+    int basic = 60;
     int[] array_count1;
     /*
      * 취소거래용 변수
@@ -152,10 +152,10 @@ public class MenuActivity extends AppCompatActivity{
         table.setText(pref.getString("table", ""));
         fragmentManager = getSupportFragmentManager();
         menuFragment = new menu1Fragment();
-        Iterator<String> iter = AddressRepo.getInstance().getIterator();
+//        Iterator<String> iter = AddressRepo.getInstance().getIterator();
 
-            wifiTasks = new WiFiTask();
-            wifiTasks.execute("192.168.20.42", "1");
+//            wifiTasks = new WiFiTask();
+//            wifiTasks.execute("192.168.20.42", "1");
 
 //        setPrint();
 //        printer = AdminApplication.getPrinter();
@@ -186,7 +186,7 @@ public class MenuActivity extends AppCompatActivity{
 
         bodyLayout = findViewById(R.id.menuactivity_layout_menu);
 
-
+        Log.d("daon_test", "id = "+pref.getString("storecode", ""));
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://15.164.232.164:5000/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -268,9 +268,10 @@ public class MenuActivity extends AppCompatActivity{
 
                             @Override
                             public void onGiftClick() {
+                                isOrder = false;
                                 Log.d("daon_test", "gift");
-                                payMode = "gift";
-                                setPayment(String.valueOf(all_price), "credit");
+//                                payMode = "gift";
+//                                setPayment(String.valueOf(all_price), "credit");
 
 //                                sendData();
                             }
@@ -340,7 +341,7 @@ public class MenuActivity extends AppCompatActivity{
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("list", (ArrayList<MenuModel>) menu_list.get(0));
                 menuFragment.setArguments(bundle);
-                bundle.putInt("position", 2);
+                bundle.putInt("position", 1);
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.menuactivity_layout_menu, menuFragment).commit();
 
@@ -375,7 +376,7 @@ public class MenuActivity extends AppCompatActivity{
                 //put your ArrayList data in bundle
                 bundle.putSerializable("list", (ArrayList<MenuModel>) menu_list.get(0));
                 menuFragment.setArguments(bundle);
-                bundle.putInt("position", 9);
+                bundle.putInt("position", 7);
                 getSupportFragmentManager().beginTransaction().replace(R.id.menuactivity_layout_menu, menuFragment).commit();
             }
         });
@@ -396,7 +397,7 @@ public class MenuActivity extends AppCompatActivity{
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("list", (ArrayList<MenuModel>) menu_list.get(0));
                 menuFragment.setArguments(bundle);
-                bundle.putInt("position", 13);
+                bundle.putInt("position", 11);
                 getSupportFragmentManager().beginTransaction().replace(R.id.menuactivity_layout_menu, menuFragment).commit();
 
 
@@ -421,7 +422,7 @@ public class MenuActivity extends AppCompatActivity{
                 //put your ArrayList data in bundle
                 bundle.putSerializable("list", (ArrayList<MenuModel>) menu_list.get(0));
                 menuFragment.setArguments(bundle);
-                bundle.putInt("position", 17);
+                bundle.putInt("position", 13);
                 getSupportFragmentManager().beginTransaction().replace(R.id.menuactivity_layout_menu, menuFragment).commit();
             }
         });
@@ -444,7 +445,7 @@ public class MenuActivity extends AppCompatActivity{
                 //put your ArrayList data in bundle
                 bundle.putSerializable("list", (ArrayList<MenuModel>) menu_list.get(0));
                 menuFragment.setArguments(bundle);
-                bundle.putInt("position", 23);
+                bundle.putInt("position", 17);
                 getSupportFragmentManager().beginTransaction().replace(R.id.menuactivity_layout_menu, menuFragment).commit();
             }
         });
@@ -534,19 +535,6 @@ public class MenuActivity extends AppCompatActivity{
         });
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        // put your code here...
-        Log.d("daon_test", "on resume!!!"+taskTimer.getStatus());
-//        taskTimer.cancel(true);
-//        if (taskTimer.getStatus() != AsyncTask.Status.RUNNING) {
-//            taskTimer = new TaskTimer();
-//            taskTimer.setTime(10, context);
-//            taskTimer.execute("");
-//        }
-
-    }
 
     public void setList() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -865,6 +853,11 @@ public class MenuActivity extends AppCompatActivity{
             type1= "번 포장";
             payMode = "";
         }
+
+        if (type.equals("cash")){
+            type1 = "번 현금";
+        }
+
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",  Locale.getDefault());
         SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd",  Locale.getDefault());
@@ -953,16 +946,16 @@ public class MenuActivity extends AppCompatActivity{
 
     public void setPayment(String amount, String type) {
         Log.d("daon", "payment = " + amount);
-//        amount = "5000";
-//        prevAuthNum = "71525617    ";
-//        prevAuthDate = "210126";
+//        amount = "3000";
+//        prevAuthNum = "76046232    ";
+//        prevAuthDate = "210503";
         int i_amount = Integer.parseInt(amount);
         int tax = (i_amount/100)*10;
         int aamount = (i_amount/100)*90;
         HashMap<String, byte[]> m_hash = new HashMap<String, byte[]>();
         /*고정 사용필드*/
         m_hash.put("TelegramType", "0200".getBytes());                                    // 전문 구분 ,  승인(0200) 취소(0420)
-        m_hash.put("DPTID", "AT0291698A".getBytes());                                     // 단말기번호 , 테스트단말번호 DPT0TEST03
+        m_hash.put("DPTID", "TH0031803A".getBytes());                                     // 단말기번호 , 테스트단말번호 DPT0TEST03
 //        m_hash.put("DPTID", "DPT0TEST03".getBytes());                                     // 단말기번호 , 테스트단말번호 DPT0TEST03
         m_hash.put("PosEntry", "S".getBytes());                                           // Pos Entry Mode , 현금영수증 거래 시 키인거래에만 'K'사용
         m_hash.put("PayType", "00".getBytes());                                           // [신용]할부개월수(default '00') [현금]거래자구분
@@ -1036,7 +1029,8 @@ public class MenuActivity extends AppCompatActivity{
                 prevAuthNum = m_hash.get("AuthNum");
                 prevAuthDate = m_hash.get("Authdate");
                 prevClassfication = m_hash.get("Classification");
-
+                cardname = m_hash.get("CardName");
+                company = m_hash.get("PurchaseName");
                 vanTr = m_hash.get("VanTr");
                 prevCardNo = m_hash.get("CardNo");
 
@@ -1381,5 +1375,18 @@ public class MenuActivity extends AppCompatActivity{
             }
             super.onPostExecute(result);
         }
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        // put your code here...
+        Log.d("daon_test", "on resume!!!"+taskTimer.getStatus());
+//        taskTimer.cancel(true);
+        if (taskTimer.getStatus() != AsyncTask.Status.RUNNING) {
+            taskTimer = new TaskTimer();
+            taskTimer.setTime(60, context);
+            taskTimer.execute("");
+        }
+
     }
 }

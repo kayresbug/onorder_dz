@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/card_icon"/>
+                android:src="@drawable/cash_icon"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="#ffcf5d"
                 android:letterSpacing="-0.05"
-                android:text="포장하기"
+                android:text="다시주문"
                 />
         </LinearLayout>
     </LinearLayout>

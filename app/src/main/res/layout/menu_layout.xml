@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="13.7dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:text="마가리타 피자"
             android:textColor="#2a2a2a"
             android:textSize="19sp"

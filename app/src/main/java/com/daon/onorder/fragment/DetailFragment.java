@@ -120,7 +120,7 @@ public class DetailFragment extends Fragment {
 
     TextView radioText;
     TextView eventText;
-
+    TextView infoBody;
     LinearLayout detail_back;
 
 
@@ -153,6 +153,8 @@ public class DetailFragment extends Fragment {
             price = model.get(position).getPrice();
             dPrice = model.get(position).getPrice();
             code = model.get(position).getCode();
+
+            Log.d("daon_test", "info = "+info);
         }
     }
 
@@ -171,6 +173,8 @@ public class DetailFragment extends Fragment {
             detail_back.setBackgroundResource(R.drawable.datail_back);
         }
 
+        infoBody = RootView.findViewById(R.id.detailfragment_text_infobody);
+        infoBody.setText(info);
         priceText = RootView.findViewById(R.id.detailfragment_text_price);
         DecimalFormat myFormatter = new DecimalFormat("###,###");
         String formattedStringPrice = myFormatter.format(Integer.parseInt(price));
@@ -429,20 +433,23 @@ public class DetailFragment extends Fragment {
                         ((MenuActivity) getActivity()).closeDetail(position);
                     }
                 }else {
-                    if (name.contains("짬뽕") || name.contains("짬짜")){
-                        String submenu = "(";
-                        if (radio11.isChecked()){
-                            submenu = submenu + ("0단계");
-                        }else if (radio12.isChecked()){
-                            submenu = submenu + ("1단계");
-                        }else if (radio13.isChecked()){
-                            submenu = submenu + ("2단계");
-                        }else if (radio14.isChecked()){
-                            submenu = submenu + ("3단계");
-                        }else if (radio15.isChecked()){
-                            submenu = submenu + ("4단계");
+                    if (name.contains("짬뽕") || name.contains("짬짜") || name.contains("짜장면")){
+                        String submenu = "";
+                        if (!name.contains("짜장면")) {
+                            submenu = submenu+"(";
+                            if (radio11.isChecked()) {
+                                submenu = submenu + ("0단계");
+                            } else if (radio12.isChecked()) {
+                                submenu = submenu + ("1단계");
+                            } else if (radio13.isChecked()) {
+                                submenu = submenu + ("2단계");
+                            } else if (radio14.isChecked()) {
+                                submenu = submenu + ("3단계");
+                            } else if (radio15.isChecked()) {
+                                submenu = submenu + ("4단계");
+                            }
+                            submenu = submenu + ")";
                         }
-                        submenu = submenu + ")";
                         if (check0.isChecked()){
                             submenu = submenu + "\n   면추가해 주세요";
                         }

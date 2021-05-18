@@ -11,8 +11,8 @@ android {
         applicationId "com.daon.onorder"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 3
-        versionName "1.0.3"
+        versionCode 7
+        versionName "1.0.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
